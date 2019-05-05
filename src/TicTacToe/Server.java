@@ -53,8 +53,22 @@ public class Server {
     static boolean circle = true; // pemain pertama pasti X
     static boolean ac = false;
     static boolean unableToConnect = false; //awalnya diasumsiin bisa konek ke lawan
+    static boolean menang = false;
+    static boolean lawanMenang = false;
     
     static int error = 0;
+    static int titikAwal = -1; //buat plot titik awal garis kalo menang
+    static int titikAkhir = -1; //buat plot titik akhir garis kalo menang
+    
+    static int[][] syaratMenang = new int[][]{
+        {0,1,2},
+        {3,4,5},
+        {6,7,8},
+        {1,4,7},
+        {2,5,8},
+        {0,4,8},
+        {2,4,6}
+    };
     
     public static void main(String[] args) throws IOException {
         while(true){
@@ -112,6 +126,29 @@ public class Server {
                 error++;
             }
         }
+    }
+    
+    public static void cekLawanMenang(){
+        for (int i = 0; i < syaratMenang.length; i++) {
+            if(circle){
+                if (spaces[syaratMenang[i][0]] == "X" && spaces[syaratMenang[i][1]] == "X" && spaces[syaratMenang[i][2]] == "X") {
+                    titikAwal = syaratMenang[i][0];
+                    titikAkhir = syaratMenang[i][2];
+                    lawanMenang = true;
+                }
+            }
+            else {
+                if (spaces[syaratMenang[i][0]] == "O" && spaces[syaratMenang[i][1]] == "O" && spaces[syaratMenang[i][2]] == "O") {
+                    titikAwal = syaratMenang[i][0];
+                    titikAkhir = syaratMenang[i][2];
+                    lawanMenang = true;
+                }
+            }
+        }
+    }
+    
+    public static void cekImbang(){
+        
     }
     
     public static void request(){
