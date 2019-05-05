@@ -36,7 +36,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Server implements Runnable {
+public class TicTacToe implements Runnable {
     
     static String ip = "localhost";
     static Scanner sc = new Scanner(System.in);
